@@ -18,7 +18,9 @@ const EmployeeList = () => {
 
         fetchData();
     }, []);
-    const { decodedData, error } = useBase64Decoder(apiResponse.responseDynamic);
+
+
+    // const { decodedData, error } = useBase64Decoder(str.Employee);
 
 
     return (
@@ -26,7 +28,6 @@ const EmployeeList = () => {
             <thead>
                 <tr>
                     <th>Employee Name</th>
-                    <th>Department</th>
                     <th>Mon</th>
                     <th>Tue</th>
                     <th>Wed</th>
@@ -35,11 +36,10 @@ const EmployeeList = () => {
                     <th>Sat</th>
                     <th>Sun</th>
                     <th>Mon</th>
-
                 </tr>
             </thead>
             <tbody>
-                {decodedData.Employee.length > 0 && decodedData.Employee.map((employee) => (
+                {str.Employee.length > 0 && str.Employee.map((employee) => (
                     <EmployeeRow key={employee.id} employee={employee} />
                 ))}
             </tbody>
@@ -63,12 +63,12 @@ function getAttendanceColor(attendanceHours) {
 
 function EmployeeRow({ employee }) {
     return (
+
         <tr>
-            <td>{employee.name}</td>
-            <td>{employee.department}</td>
-            {employee.attendances.map((attendance, index) => (
-                <AttendanceCell key={index} attendance={attendance} />
-            ))}
+            <td className="employee-info">
+                <p>{`${employee.EmployeeName} (${employee.EmployeeCode})`}</p>
+                <p>{employee.DepartmentName}</p>
+            </td>
         </tr>
     );
 }
